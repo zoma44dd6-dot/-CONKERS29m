@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#166534">
+<title>حياة أحسن | ابدأ بنفسك</title>
+
+<style>
+:root {
+  --primary: #166534;
+  --primary2: #22c55e;
+  --bg: #f4f8f4;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --soft: #e8f5e9;
+  --shadow: 0 8px 30px rgba(0,0,0,.05);
+}
+
+body.dark {
+  --bg: #111827;
+  --card: #1f2937;
+  --text: #f9fafb;
+  --muted: #cbd5e1;
+  --border: #374151;
+  --soft: #243d30;
+  --shadow: 0 8px 30px rgba(0,0,0,.15);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Tahoma, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  transition: background .2s, color .2s;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+header {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav {
+  max-width: 1150px;
+  margin: auto;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.logo {
+  font-size: 23px;
+  font-weight: bold;
+  color: var(--primary2);
+}
+
+.nav-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.icon-btn {
+  background: var(--soft);
+  color: var(--text);
+  border: 0;
+  padding: 9px 12px;
+  border-radius: 10px;
+}
+
+.container {
+  max-width: 1150px;
+  padding: 24px 20px;
+  margin: auto;
+}
+
+.hero {
+  background: linear-gradient(135deg, #14532d, #16a34a);
+  color: white;
+  border-radius: 25px;
+  padding: 42px 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero h1 {
+  font-size: clamp(27px, 5vw, 43px);
+  line-height: 1.5;
+  margin: 0 0 10px;
+}
+
+.hero p {
+  max-width: 650px;
+  color: #e4fbe8;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--primary2);
+  color: white;
+  padding: 11px 19px;
+  border: 0;
+  border-radius: 11px;
+  font-weight: bold;
+}
+
+.btn:hover {
+  filter: brightness(.94);
+}
+
+.btn-light {
+  background: white;
+  color: #166534;
+}
+
+.btn-secondary {
+  background: var(--soft);
+  color: var(--text);
+}
+
+.section {
+  margin-top: 36px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 17px;
+}
+
+.section-title h2 {
+  margin: 0;
+  font-size: 25px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  min-width: 0;
+}
+
+.feature {
+  transition: transform .2s;
+}
+
+.feature:hover {
+  transform: translateY(-4px);
+}
+
+.feature .emoji {
+  font-size: 35px;
+}
+
+.feature h3 {
+  margin: 7px 0;
+}
+
+.feature p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.feature button {
+  margin-top: 8px;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 18px;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 12px 0;
+}
+
+input, select, textarea {
+  min-width: 0;
+  padding: 11px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+  width: 100%;
+}
+
+.form-row input,
+.form-row select {
+  flex: 1;
+  width: auto;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border);
+  overflow-wrap: anywhere;
+}
+
+.task:last-child {
+  border-bottom: 0;
+}
+
+.task input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  accent-color: var(--primary2);
+}
+
+.task.done .task-name {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+.task-name {
+  flex: 1;
+}
+
+.delete-btn {
+  border: 0;
+  background: transparent;
+  color: #ef4444;
+  font-size: 18px;
+}
+
+.progress {
+  background: var(--border);
+  height: 10px;
+  border-radius: 99px;
+  overflow: hidden;
+  margin: 12px 0;
+}
+
+.progress div {
+  height: 100%;
+  width: 0;
+  background: var(--primary2);
+  transition: width .3s;
+}
+
+.recipe-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.recipe-card h3 {
+  margin: 0;
+}
+
+.recipe-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.recipe-card details {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.recipe-card summary {
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--primary2);
+}
+
+.article-list {
+  display: grid;
+  gap: 12px;
+}
+
+.article-list details {
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.article-list summary {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.article-list p {
+  color: var(--muted);
+}
+
+.tag {
+  display: inline-block;
+  background: var(--soft);
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.empty {
+  text-align: center;
+  padding: 20px;
+  color: var(--muted);
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  text-align: center;
+  margin-top: 40px;
+  padding: 25px 15px;
+  color: var(--muted);
+}
+
+.small {
+  font-size: 12px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media (max-width: 850px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 16px 12px;
+  }
+  .hero {
+    padding: 28px 19px;
+  }
+  .nav {
+    padding: 10px 12px;
+  }
+  .logo {
+    font-size: 19px;
+  }
+  .grid {
+    gap: 10px;
+  }
+  .card {
+    padding: 14px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#home" class="logo">🌱 حياة أحسن</a>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="تغيير المظهر">🌙</button>
+      <button class="icon-btn" onclick="exportData()">📥 حفظ بياناتي</button>
+    </div>
+  </div>
+</header>
+
+<main class="container" id="home">
+
+  <section class="hero">
+    <span class="tag" style="background:#ffffff25;color:white">ابدأ رحلتك اليوم</span>
+    <h1>خطوة صغيرة كل يوم،<br>حياة أحسن كل يوم 🌱</h1>
+    <p>
+      نظّم مذاكرتك، وطوّر نفسك، وتعلّم دينك،
+      واكتشف وصفات سهلة تساعدك تعيش حياتك بشكل أفضل.
+    </p>
+    <a href="#sections" class="btn btn-light">ابدأ رحلتك الآن ←</a>
+  </section>
+
+  <section class="section" id="sections">
+    <div class="section-title">
+      <h2>اختار المجال اللي يهمك</h2>
+      <span class="muted">طوّر نفسك خطوة بخطوة</span>
+    </div>
+
+    <div class="grid">
+      <article class="card feature">
+        <div class="emoji">📚</div>
+        <h3>ذاكر بذكاء</h3>
+        <p>خطط لمذاكرتك، وتابع مهامك، ونظّم وقتك.</p>
+        <button class="btn" onclick="goTo('study')">ابدأ المذاكرة</button>
+      </article>
+
+      <article class="card feature">
+        <div class="emoji">🕌</div>
+        <h3>رحلة إيمان</h3>
+        <p>تعلّم أساسيات دينك وافهم عباداتك من مصادر موثوقة.</p>
+        <button class="btn" onclick="goTo('faith')">ابدأ التعلّم</button>
+      </article>
+
+      <article class="card feature">
+        <div class="emoji">🍳</div>
+        <h3>مطبخي في الغربة</h3>
+        <p>وصفات بسيطة واقتصادية تناسب الطلبة والمغتربين.</p>
+        <button class="btn" onclick="goTo('food')">اكتشف الوصفات</button>
+      </article>
+
+      <article class="card feature">
+        <div class="emoji">❤️</div>
+        <h3>علاقات صحية</h3>
+        <p>افهم نفسك، وحدد قيمك، وتعلّم أسس العلاقة السليمة.</p>
+        <button class="btn" onclick="goTo('relationships')">اكتشف المزيد</button>
+      </article>
+    </div>
+  </section>
+
+  <section class="section two-col" id="study">
+    <div class="card">
+      <div class="section-title">
+        <h2>📚 جدول المذاكرة</h2>
+        <span class="muted small">بياناتك تُحفظ على جهازك</span>
+      </div>
+
+      <form id="studyForm">
+        <div class="form-row">
+          <input id="subject" placeholder="اسم المادة" required maxlength="100">
+          <input id="studyTask" placeholder="المهمة (مثلاً: حل 10 أسئلة)" required maxlength="180">
+        </div>
+        <div class="form-row">
+          <input id="studyDate" type="date" aria-label="موعد المهمة">
+          <select id="studyDuration" aria-label="مدة المذاكرة">
+            <option value="15">15 دقيقة</option>
+            <option value="25" selected>25 دقيقة</option>
+            <option value="45">45 دقيقة</option>
+            <option value="60">60 دقيقة</option>
+            <option value="90">90 دقيقة</option>
+          </select>
+          <button class="btn" type="submit">+ إضافة</button>
+        </div>
+      </form>
+
+      <div class="progress"><div id="studyProgress"></div></div>
+      <p class="muted small" id="studyStats">لم تضف مهام بعد.</p>
+      <div id="studyList"></div>
+    </div>
+
+    <div class="card">
+      <h2>⏱️ مؤقت التركيز</h2>
+      <p class="muted">اختار مدة مناسبة، وابعد المشتتات وابدأ.</p>
+
+      <div style="text-align:center;padding:20px 0">
+        <div id="timerDisplay" style="font-size:48px;font-weight:bold">25:00</div>
+        <p id="timerStatus" class="muted">جاهز للتركيز</p>
+      </div>
+
+      <div class="form-row">
+        <select id="timerMinutes" aria-label="مدة المؤقت">
+          <option value="15">15 دقيقة</option>
+          <option value="25" selected>25 دقيقة</option>
+          <option value="45">45 دقيقة</option>
+          <option value="60">60 دقيقة</option>
+        </select>
+        <button class="btn" id="timerStart" type="button">ابدأ</button>
+        <button class="btn btn-secondary" id="timerReset" type="button">إعادة</button>
+      </div>
+      <p class="small muted">المؤقت يعمل ما دامت الصفحة مفتوحة. خذ راحة قصيرة بين الجلسات.</p>
+    </div>
+  </section>
+
+  <section class="section" id="faith">
+    <div class="section-title">
+      <h2>🕌 رحلة إيمان</h2>
+      <span class="muted">تعلّم، افهم، وطبّق</span>
+    </div>
+
+    <div class="card">
+      <p>
+        تعلّم الدين رحلة مستمرة تقوم على الإخلاص، وطلب العلم،
+        والسؤال، والعمل. ابدأ بالأساسيات وتدرّج من مصادر موثوقة.
+      </p>
+
+      <div class="article-list">
+        <details>
+          <summary>1. ما معنى الإيمان؟</summary>
+          <p>
+            الإيمان بالله يشمل التصديق به ومحبته والتوجه إليه بالعبادة.
+            ويقوم الإسلام على أركان الإيمان المعروفة: الإيمان بالله،
+            وملائكته، وكتبه، ورسله، واليوم الآخر، والقدر خيره وشره.
+            تعلّم هذه الأصول من شرح موثوق ومناسب لمستواك.
+          </p>
+        </details>
+
+        <details>
+          <summary>2. كيف أبدأ في تعلّم ديني؟</summary>
+          <p>
+            ابدأ بتصحيح العقيدة وتعلّم الطهارة والصلاة وما تحتاجه في عباداتك
+            اليومية، ثم خصص وقتًا منتظمًا لقراءة القرآن وفهم معانيه.
+            اسأل أهل العلم المؤهلين عند وجود مسائل لا تعرف حكمها.
+          </p>
+        </details>
+
+        <details>
+          <summary>3. كيف أتدبر القرآن؟</summary>
+          <p>
+            اقرأ مقدارًا تستطيع المواظبة عليه، وارجع إلى تفسير موثوق،
+            وتأمل المعاني وما تدعوك إليه الآيات من هداية وعمل.
+            لا تعتمد على تفسير الآيات من عندك دون علم.
+          </p>
+        </details>
+
+        <details>
+          <summary>4. ماذا أفعل عندما يكون عندي سؤال أو شك؟</summary>
+          <p>
+            اكتب السؤال بوضوح، وابحث عن إجابة من مصدر علمي موثوق،
+            ولا تتردد في سؤال متخصص مؤهل.
+            التفريق بين المعلومة الموثقة والرأي الشخصي مهم في المسائل الدينية.
+          </p>
+        </details>
+      </div>
+
+      <p>
+        <strong>مصادر للبدء:</strong>
+        <a href="https://quran.com/" target="_blank" rel="noopener noreferrer">القرآن الكريم</a>
+        ·
+        <a href="https://sunnah.com/" target="_blank" rel="noopener noreferrer">موسوعة الحديث</a>
+        ·
+        <a href="https://www.dar-alifta.org/" target="_blank" rel="noopener noreferrer">دار الإفتاء المصرية</a>
+      </p>
+
+      <p class="small muted">
+        المحتوى تعليمي عام، وليس بديلًا عن سؤال أهل العلم في المسائل التفصيلية.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="food">
+    <div class="section-title">
+      <h2>🍳 وصفات سهلة واقتصادية</h2>
+      <span class="muted">أكل بسيط بمكونات متاحة</span>
+    </div>
+
+    <div class="grid" id="recipeList"></div>
+  </section>
+
+  <section class="section" id="relationships">
+    <div class="section-title">
+      <h2>❤️ افهم نفسك وابنِ علاقات صحية</h2>
+    </div>
+
+    <div class="grid">
+      <article class="card">
+        <div class="emoji">🪞</div>
+        <h3>افهم نفسك أولًا</h3>
+        <p class="muted">
+          اكتب أهم قيمك وأهدافك، وحدد الأمور التي لا يمكنك التنازل عنها
+          والأمور التي تستطيع التفاهم بشأنها.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="emoji">🤝</div>
+        <h3>التوافق أهم من التشابه</h3>
+        <p class="muted">
+          الاختلاف ليس مشكلة بالضرورة. المهم وجود الاحترام المتبادل
+          والقدرة على التفاهم وحل الخلافات.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="emoji">💬</div>
+        <h3>أسئلة قبل الزواج</h3>
+        <p class="muted">
+          ناقشوا التوقعات بشأن الدين، والعمل، والمال، والأطفال،
+          والعلاقة مع الأهل، وطريقة التعامل مع المشكلات.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="emoji">🛡️</div>
+        <h3>الاحترام والأمان</h3>
+        <p class="muted">
+          انتبه إلى الكذب المتكرر، والإهانة، والتحكم القسري،
+          وانتهاك الحدود الشخصية. لا تتجاهل السلوك المؤذي.
+        </p>
+      </article>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3>📝 تمرين: حدّد أولوياتك</h3>
+      <p class="muted">اكتب خمس صفات أو قيم مهمة بالنسبة لك في شريك الحياة.</p>
+      <textarea id="valuesInput" rows="4" maxlength="2000"
+        placeholder="مثلاً: الاحترام، الصدق، تحمّل المسؤولية..."></textarea>
+      <button class="btn" id="saveValues" style="margin-top:10px">احفظ إجابتي</button>
+      <p class="small muted" id="valuesStatus"></p>
+    </div>
+  </section>
+
+  <section class="section" id="goals">
+    <div class="section-title">
+      <h2>🎯 أهدافي</h2>
+      <span class="muted">إنجازات صغيرة تصنع فرقًا</span>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <h3>أضف هدفًا جديدًا</h3>
+        <form id="goalForm">
+          <div class="form-row">
+            <input id="goalInput" placeholder="مثلاً: قراءة 10 صفحات" required maxlength="180">
+            <button class="btn" type="submit">+ أضف الهدف</button>
+          </div>
+        </form>
+        <div id="goalList"></div>
+      </div>
+
+      <div class="card">
+        <h3>📈 تقدّمك</h3>
+        <p class="muted">عدد الأهداف التي أنجزتها</p>
+        <div id="goalSummary" style="font-size:32px;font-weight:bold">0 / 0</div>
+        <div class="progress"><div id="goalProgress"></div></div>
+        <p id="encouragement" class="muted">كل بداية صغيرة تستحق التقدير.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div style="font-size:22px;font-weight:bold;color:var(--primary2)">🌱 حياة أحسن</div>
+    <p>ابدأ بنفسك، وخلي كل يوم فرصة جديدة للتطور.</p>
+    <p class="small">نسخة تجريبية شخصية تعمل داخل المتصفح.</p>
+  </footer>
+
+</main>
+
+<script>
+"use strict";
+
+// أدوات التخزين: يتعامل الموقع مع فشل التخزين دون إيقاف الصفحة.
+function readStorage(key, fallback) {
+  try {
+    const value = localStorage.getItem(key);
+    return value === null ? fallback : JSON.parse(value);
+  } catch (error) {
+    return fallback;
+  }
+}
+
+function saveStorage(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+    return true;
+  } catch (error) {
+    alert("تعذر حفظ البيانات. تأكد من إعدادات المتصفح والمساحة المتاحة.");
+    return false;
+  }
+}
+
+let studyTasks = readStorage("hayah_study", []);
+let goals = readStorage("hayah_goals", []);
+let recipes = [
+  {
+    name: "🍳 بيض بالطماطم",
+    time: "10 دقائق",
+    cost: "اقتصادية",
+    ingredients: "بيضتان، طماطم، قليل من الزيت والملح.",
+    steps: "قطّع الطماطم وضعها في مقلاة بقليل من الزيت. بعد أن تلين، أضف البيض وقلّب حتى ينضج تمامًا."
+  },
+  {
+    name: "🍝 مكرونة بالصلصة",
+    time: "20 دقيقة",
+    cost: "اقتصادية",
+    ingredients: "مكرونة، طماطم أو صلصة، ثوم، زيت، ملح.",
+    steps: "اسلق المكرونة حسب التعليمات. حضّر الصلصة بالثوم والطماطم، ثم أضف المكرونة وقلّب."
+  },
+  {
+    name: "🥔 بطاطس بالبيض",
+    time: "20 دقيقة",
+    cost: "اقتصادية",
+    ingredients: "حبة بطاطس، بيضتان، زيت، ملح وفلفل.",
+    steps: "قطّع البطاطس مكعبات صغيرة واطهها في المقلاة حتى تنضج. أضف البيض واطهه جيدًا."
+  },
+  {
+    name: "🍚 أرز بالخضار",
+    time: "25 دقيقة",
+    cost: "اقتصادية",
+    ingredients: "كوب أرز، خضار متاح، ماء، ملح وقليل من الزيت.",
+    steps: "اغسل الأرز. شوّح الخضار قليلًا، ثم أضف الأرز والماء المناسب لنوعه. اتركه حتى ينضج."
+  }
+];
+
+function goTo(id) {
+  document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+}
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, function(char) {
+    return {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[char];
+  });
+}
+
+// المظهر
+const themeToggle = document.getElementById("themeToggle");
+const savedTheme = readStorage("hayah_theme", "light");
+
+if (savedTheme === "dark") {
+  document.body.classList.add("dark");
+  themeToggle.textContent = "☀️";
+}
+
+themeToggle.addEventListener("click", function() {
+  document.body.classList.toggle("dark");
+  const theme = document.body.classList.contains("dark") ? "dark" : "light";
+  saveStorage("hayah_theme", theme);
+  themeToggle.textContent = theme === "dark" ? "☀️" : "🌙";
+});
+
+// جدول المذاكرة
+document.getElementById("studyForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const subject = document.getElementById("subject").value.trim();
+  const task = document.getElementById("studyTask").value.trim();
+  const date = document.getElementById("studyDate").value;
+  const duration = Number(document.getElementById("studyDuration").value);
+
+  if (!subject || !task) return;
+
+  studyTasks.push({
+    id: Date.now() + Math.random(),
+    subject: subject,
+    task: task,
+    date: date,
+    duration: duration,
+    done: false
+  });
+
+  saveStorage("hayah_study", studyTasks);
+  renderStudy();
+  this.reset();
+  document.getElementById("studyDuration").value = "25";
+});
+
+function renderStudy() {
+  const list = document.getElementById("studyList");
+  list.replaceChildren();
+
+  if (!studyTasks.length) {
+    list.innerHTML = '<div class="empty">لسه مفيش مهام. أضف أول مهمة وابدأ! 📚</div>';
+  }
+
+  studyTasks.forEach(function(item) {
+    const row = document.createElement("div");
+    row.className = "task" + (item.done ? " done" : "");
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = item.done;
+    checkbox.setAttribute("aria-label", "إنجاز المهمة");
+
+    checkbox.addEventListener("change", function() {
+      item.done = checkbox.checked;
+      saveStorage("hayah_study", studyTasks);
+      renderStudy();
+    });
+
+    const name = document.createElement("div");
+    name.className = "task-name";
+
+    const dateText = item.date ? " · " + item.date : "";
+    name.innerHTML =
+      "<strong>" + escapeHTML(item.subject) + "</strong><br>" +
+      escapeHTML(item.task) +
+      '<div class="small muted">' + escapeHTML(item.duration) +
+      " دقيقة" + escapeHTML(dateText) + "</div>";
+
+    const remove = document.createElement("button");
+    remove.className = "delete-btn";
+    remove.textContent = "×";
+    remove.setAttribute("aria-label", "حذف المهمة");
+
+    remove.addEventListener("click", function() {
+      studyTasks = studyTasks.filter(function(t) {
+        return t.id !== item.id;
+      });
+      saveStorage("hayah_study", studyTasks);
+      renderStudy();
+    });
+
+    row.append(checkbox, name, remove);
+    list.appendChild(row);
+  });
+
+  const total = studyTasks.length;
+  const completed = studyTasks.filter(function(t) {
+    return t
